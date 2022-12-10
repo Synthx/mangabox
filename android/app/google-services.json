@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "887368194549",
+    "project_id": "manga-box-a06e0",
+    "storage_bucket": "manga-box-a06e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887368194549:android:af74f1cdb0a1bf5fcce8bc",
+        "android_client_info": {
+          "package_name": "com.example.mangabox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887368194549-0e8hueie83jtcc4snnmjohvfu8r8jdq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoEUGLuA5rqRJWhG3SFJP_od_Clguply0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887368194549-0e8hueie83jtcc4snnmjohvfu8r8jdq6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "887368194549-s6ie56hra7pc3ffm6n3fjogdjretar66.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.yezebi.mangaBox"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887368194549:android:7270433e7984a10ecce8bc",
+        "android_client_info": {
+          "package_name": "org.yezebi.manga_box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887368194549-0e8hueie83jtcc4snnmjohvfu8r8jdq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoEUGLuA5rqRJWhG3SFJP_od_Clguply0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887368194549-0e8hueie83jtcc4snnmjohvfu8r8jdq6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "887368194549-s6ie56hra7pc3ffm6n3fjogdjretar66.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.yezebi.mangaBox"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
