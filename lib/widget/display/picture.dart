@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mangabox/core/core.dart';
 import 'package:mangabox/theme/theme.dart';
 
 class Picture extends StatelessWidget {
@@ -28,13 +29,16 @@ class Picture extends StatelessWidget {
         radius: radius,
         child: const CircularProgressIndicator(),
       ),
-      errorWidget: (context, url, error) => _PictureCard(
-        radius: radius,
-        child: Icon(
-          Icons.error_outline,
-          color: Theme.of(context).errorColor,
-        ),
-      ),
+      errorWidget: (context, url, error) {
+        log.severe('Failed to load picture: $picture', error);
+        return _PictureCard(
+          radius: radius,
+          child: Icon(
+            Icons.error_outline,
+            color: Theme.of(context).errorColor,
+          ),
+        );
+      },
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius),

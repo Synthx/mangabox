@@ -1,5 +1,9 @@
-name: main
-on: [ push ]
+name: Verify
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: macos-latest
