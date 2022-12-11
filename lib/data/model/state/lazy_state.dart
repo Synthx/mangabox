@@ -15,4 +15,9 @@ class LazyState<T> with _$LazyState<T> {
   bool get canLoadMore {
     return content.length < total && !loading;
   }
+
+  @override
+  String toString() {
+    return 'LazyState(content: ${content.length}, total: $total, loading: $loading)';
+  }
 }

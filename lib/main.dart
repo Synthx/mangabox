@@ -17,6 +17,7 @@ Future<void> main() async {
   setupInjector();
 
   Logger.root.level = kDebugMode ? Level.ALL : Level.INFO;
+  Logger.root.onRecord.listen(onRecord);
   Intl.defaultLocale = _defaultLocale;
   Bloc.observer = StateObserver();
 
