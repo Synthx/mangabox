@@ -8,7 +8,6 @@ import 'package:mangabox/theme/theme.dart';
 import 'book_app_bar.dart';
 import 'book_cubit.dart';
 import 'book_details.dart';
-import 'book_edition.dart';
 import 'book_header.dart';
 import 'book_information.dart';
 import 'book_same_edition.dart';
@@ -57,8 +56,6 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
             BookScreenInformation(),
             Gap(kSpacer),
             BookScreenDetails(),
-            Gap(kSpacer),
-            BookScreenEdition(),
             Gap(kSpacer),
             BookScreenSameEdition(),
           ],
