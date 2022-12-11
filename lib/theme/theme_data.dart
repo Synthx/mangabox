@@ -24,6 +24,17 @@ ThemeData themeData({
     listTileTheme: const ListTileThemeData(
       contentPadding: EdgeInsets.zero,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        splashFactory: NoSplash.splashFactory,
+        foregroundColor: const Color(0xFFBF5AF2),
+        textStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+    ),
     textTheme: base.textTheme.copyWith(
       displayLarge: base.textTheme.displayLarge?.copyWith(
         fontSize: 34,

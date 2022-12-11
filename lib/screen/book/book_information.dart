@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:mangabox/core/extension/extension.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/theme/theme.dart';
+import 'package:mangabox/widget/widget.dart';
 
 import 'book.state.dart';
 import 'book_cubit.dart';
@@ -39,10 +41,17 @@ class BookScreenInformation extends StatelessWidget {
                 book.name,
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              const Gap(20),
+              const Gap(kSpacer),
               Text(
-                book.summary ?? '',
-                style: Theme.of(context).textTheme.bodyMedium,
+                'Résumé',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: context.primaryTextColor,
+                    ),
+              ),
+              const Gap(10),
+              ExpandableText(
+                book.summary ?? 'Aucun résumé disponible',
+                maxLines: 10,
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
@@ -32,10 +33,12 @@ class BookScreenSameEdition extends StatelessWidget {
           ),
           child: Text(
             'De la même édition',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: context.primaryTextColor,
+                ),
           ),
         ),
-        const Gap(kSpacer),
+        const Gap(10),
         BlocSelector<BookScreenCubit, BookScreenState, List<Book>>(
           selector: (state) => state.sameEdition.content,
           builder: (context, books) {

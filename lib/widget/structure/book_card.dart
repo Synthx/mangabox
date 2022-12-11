@@ -6,10 +6,12 @@ import 'package:mangabox/widget/widget.dart';
 class BookCard extends StatelessWidget {
   final Book book;
   final VoidCallback? onTap;
+  final String? title;
 
   const BookCard({
     required this.book,
     this.onTap,
+    this.title,
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +29,7 @@ class BookCard extends StatelessWidget {
           ),
           const Gap(10),
           Text(
-            book.name,
+            title ?? book.name,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(context).textTheme.displayLarge?.color,
