@@ -1,3 +1,4 @@
+export 'author.dart';
 export 'book.dart';
 export 'edition.dart';
 export 'edition_status.dart';

@@ -14,6 +14,7 @@ class Series with _$Series {
     String? summary,
     String? picture,
     required SeriesType type,
+    required List<Author> authors,
   }) = _Series;
 
   factory Series.fromJson(Map<String, dynamic> json) => _$SeriesFromJson(json);
