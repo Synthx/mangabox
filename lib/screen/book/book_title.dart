@@ -16,7 +16,7 @@ class BookScreenTitle extends StatelessWidget {
       builder: (context, book) {
         return Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: kSpacer,
+            horizontal: kSafeArea,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
 import 'package:mangabox/theme/theme.dart';
+import 'package:mangabox/widget/widget.dart';
 
 class MbxIconListTile extends StatelessWidget {
   final String title;
@@ -19,55 +19,29 @@ class MbxIconListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              borderRadius: BorderRadius.circular(kRadiusSmall),
-            ),
-            child: Icon(
-              icon,
-              color: onTap != null
-                  ? context.primaryColor
-                  : context.secondaryTextColor,
-            ),
-          ),
-          const Gap(kSpacer),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (subtitle != null)
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 5,
-                    ),
-                    child: Text(
-                      subtitle!,
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                  ),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: context.primaryTextColor,
-                      ),
-                ),
-              ],
-            ),
-          ),
-          if (onTap != null)
-            Icon(
-              Icons.chevron_right,
-              color: context.secondaryTextColor,
-            ),
-        ],
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+          borderRadius: BorderRadius.circular(kRadiusSmall),
+        ),
+        child: Icon(
+          icon,
+          color:
+              onTap != null ? context.primaryColor : context.secondaryTextColor,
+        ),
       ),
+      title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
+      trailing: onTap != null
+          ? const MbxIconButton(
+              icon: Icons.chevron_right,
+            )
+          : null,
+      onTap: () => onTap?.call(),
     );
   }
 }

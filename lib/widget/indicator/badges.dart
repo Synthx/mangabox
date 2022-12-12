@@ -11,7 +11,7 @@ class MbxBadges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.labelMedium;
+    final style = Theme.of(context).textTheme.bodySmall;
     final widgets = List.generate(badges.length, (index) {
       final value = badges[index];
 

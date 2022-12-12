@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:mangabox/core/extension/extension.dart';
+import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
+import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
@@ -12,6 +13,15 @@ import 'edition_state.dart';
 class EditionScreenTitle extends StatelessWidget {
   const EditionScreenTitle({Key? key}) : super(key: key);
 
+  void _openSeriesScreen({
+    required BuildContext context,
+    required Series series,
+  }) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => SeriesScreen(series: series),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocSelector<EditionScreenCubit, EditionScreenState, Edition>(
@@ -20,11 +30,12 @@ class EditionScreenTitle extends StatelessWidget {
         return SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: kSpacer,
+              horizontal: kSafeArea,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Gap(kSpacer),
                 Text(
                   edition.name,
                   style: Theme.of(context).textTheme.displayMedium,
@@ -34,6 +45,10 @@ class EditionScreenTitle extends StatelessWidget {
                   title: edition.series.name,
                   subtitle: 'Série',
                   icon: Icons.style_outlined,
+                  onTap: () => _openSeriesScreen(
+                    context: context,
+                    series: edition.series,
+                  ),
                 ),
                 const Gap(kSpacer),
                 Text(

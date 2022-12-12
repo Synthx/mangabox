@@ -47,9 +47,9 @@ class PictureHeader extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: kSpacer,
-            left: kSpacer,
-            right: kSpacer,
+            bottom: 0,
+            left: kSafeArea,
+            right: kSafeArea,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

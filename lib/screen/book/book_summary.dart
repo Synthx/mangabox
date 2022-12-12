@@ -15,7 +15,7 @@ class BookScreenSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: kSpacer,
+        horizontal: kSafeArea,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,13 +26,13 @@ class BookScreenSummary extends StatelessWidget {
                   color: context.primaryTextColor,
                 ),
           ),
-          const Gap(10),
+          const Gap(kSpacer),
           BlocSelector<BookScreenCubit, BookScreenState, String?>(
             selector: (state) => state.book.summary,
             builder: (context, summary) {
               return ExpandableText(
                 summary ?? 'Aucun résumé disponible',
-                maxLines: 9,
+                maxLines: 8,
               );
             },
           ),

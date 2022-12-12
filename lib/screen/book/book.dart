@@ -28,7 +28,7 @@ class BookScreen extends StatelessWidget {
       create: (context) => BookScreenCubit(
         bookService: getIt(),
         book: book,
-      )..load(),
+      )..init(),
       child: const _BookScreenWrapper(),
     );
   }
@@ -56,6 +56,7 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             BookScreenHeader(),
+            Gap(kSpacer),
             BookScreenTitle(),
             Gap(kSpacer),
             BookScreenSummary(),
