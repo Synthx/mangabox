@@ -13,7 +13,7 @@ extension EditionStatusExtension on EditionStatus {
   String locale() {
     switch (this) {
       case EditionStatus.inProgress:
-        return 'Edition en cours de parution';
+        return 'En cours de parution';
       case EditionStatus.stopped:
         return 'Edition arrêtée';
       case EditionStatus.finished:

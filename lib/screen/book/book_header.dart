@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mangabox/core/core.dart';
-import 'package:mangabox/theme/theme.dart';
+import 'package:mangabox/data/data.dart';
 import 'package:mangabox/widget/widget.dart';
 
 import 'book.state.dart';
@@ -12,17 +11,21 @@ class BookScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 550 + context.safePaddingTop,
-      child: BlocSelector<BookScreenCubit, BookScreenState, String?>(
-        selector: (state) => state.book.picture,
-        builder: (context, picture) {
-          return Picture(
-            picture: picture,
-            radius: kRadiusLarge,
-          );
-        },
-      ),
+    return BlocSelector<BookScreenCubit, BookScreenState, Book>(
+      selector: (state) => state.book,
+      builder: (context, book) {
+        return PictureHeader(
+          picture: book.picture,
+          child: MbxBadges(
+            badges: [
+              book.localePublicationDate(),
+              book.edition.status.locale(),
+              book.edition.publisher.name,
+              book.edition.series.type.name,
+            ],
+          ),
+        );
+      },
     );
   }
 }
