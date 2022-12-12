@@ -9,8 +9,10 @@ import 'book_app_bar.dart';
 import 'book_cubit.dart';
 import 'book_details.dart';
 import 'book_header.dart';
-import 'book_information.dart';
+import 'book_links.dart';
 import 'book_same_edition.dart';
+import 'book_summary.dart';
+import 'book_title.dart';
 
 class BookScreen extends StatelessWidget {
   final Book book;
@@ -46,6 +48,7 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
       extendBodyBehindAppBar: true,
       appBar: const BookScreenAppBar(),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         padding: EdgeInsets.only(
           bottom: kSpacer + context.safePaddingBottom,
         ),
@@ -53,7 +56,11 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             BookScreenHeader(),
-            BookScreenInformation(),
+            BookScreenTitle(),
+            Gap(kSpacer),
+            BookScreenSummary(),
+            Gap(kSpacer),
+            BookScreenLinks(),
             Gap(kSpacer),
             BookScreenDetails(),
             Gap(kSpacer),

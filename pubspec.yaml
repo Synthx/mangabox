@@ -1,7 +1,7 @@
 name: mangabox
 description: Help you manage your manga collection
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.2.0+1
 
 environment:
   sdk: '>=2.18.5 <3.0.0'

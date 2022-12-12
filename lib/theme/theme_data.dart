@@ -10,6 +10,7 @@ ThemeData themeData({
     backgroundColor: const Color(0xFF151517),
     scaffoldBackgroundColor: const Color(0xFF000000),
     cardColor: const Color(0xFF27272A),
+    dividerColor: const Color(0xFF151517),
     errorColor: const Color(0xFFFF453A),
     primaryColor: const Color(0xFFBF5AF2),
     progressIndicatorTheme: const ProgressIndicatorThemeData(

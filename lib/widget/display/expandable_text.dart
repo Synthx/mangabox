@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class ExpandableText extends StatefulWidget {
   final String text;
@@ -46,6 +47,7 @@ class _ExpandableTextState extends State<ExpandableText> {
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  const Gap(10),
                   TextButton.icon(
                     onPressed: () => _toggle(),
                     label: Icon(
