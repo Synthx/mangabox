@@ -26,7 +26,10 @@ class EditionScreenBooks extends StatelessWidget {
       selector: (state) => state.books.content,
       builder: (context, books) {
         return SliverPadding(
-          padding: const EdgeInsets.all(kSpacer),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kSafeArea,
+            vertical: kSpacer,
+          ),
           sliver: SliverGrid(
             gridDelegate: kDefaultGridDelegate,
             delegate: SliverChildBuilderDelegate(

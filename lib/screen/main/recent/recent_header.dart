@@ -16,7 +16,7 @@ class RecentBookScreenHeader extends StatelessWidget {
             'Récent',
             style: Theme.of(context).textTheme.displayLarge,
           ),
-          const Gap(60),
+          const Gap(50),
         ],
       ),
     );

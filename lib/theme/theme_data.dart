@@ -55,6 +55,12 @@ ThemeData themeData({
         fontWeight: FontWeight.bold,
         color: const Color(0xFFFFFFFF),
       ),
+      bodyLarge: base.textTheme.bodyMedium?.copyWith(
+        fontSize: 17,
+        fontFamily: 'SF Pro Display',
+        fontWeight: FontWeight.normal,
+        color: const Color(0x99EBEBF5),
+      ),
       bodyMedium: base.textTheme.bodyMedium?.copyWith(
         fontSize: 17,
         fontFamily: 'SF Pro Display',

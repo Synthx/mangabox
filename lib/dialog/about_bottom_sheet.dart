@@ -22,8 +22,8 @@ class AboutBottomSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         top: kRadiusLarge,
-        left: kSpacer,
-        right: kSpacer,
+        left: kSafeArea,
+        right: kSafeArea,
         bottom: kSpacer + context.safePaddingBottom,
       ),
       decoration: BoxDecoration(

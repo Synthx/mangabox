@@ -29,7 +29,7 @@ class BookScreenSameEdition extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: kSpacer,
+            horizontal: kSafeArea,
           ),
           child: Text(
             'De la même édition',
@@ -38,18 +38,18 @@ class BookScreenSameEdition extends StatelessWidget {
                 ),
           ),
         ),
-        const Gap(10),
+        const Gap(kSpacer),
         BlocSelector<BookScreenCubit, BookScreenState, List<Book>>(
           selector: (state) => state.sameEdition.content,
           builder: (context, books) {
-            const double height = 200;
+            const double height = 210;
             return SizedBox(
               height: height,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: books.length,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: kSpacer,
+                  horizontal: kSafeArea,
                 ),
                 separatorBuilder: (context, index) => const Gap(10),
                 itemBuilder: (context, index) {

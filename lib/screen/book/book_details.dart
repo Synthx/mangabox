@@ -28,7 +28,7 @@ class BookScreenDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: kSpacer,
+        horizontal: kSafeArea,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +62,11 @@ class BookScreenDetails extends StatelessWidget {
                 ),
               ];
 
-              return ListView.separated(
+              return ListView.builder(
                 shrinkWrap: true,
                 itemCount: details.length,
                 padding: EdgeInsets.zero,
                 physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) => const Gap(kSpacer),
                 itemBuilder: (context, index) {
                   final detail = details[index];
                   return MbxIconListTile(

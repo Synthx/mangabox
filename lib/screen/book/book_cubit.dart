@@ -14,7 +14,7 @@ class BookScreenCubit extends Cubit<BookScreenState> {
           sameEdition: const LazyState(),
         ));
 
-  Future<void> load() async {
+  Future<void> init() async {
     emit(state.copyWith.sameEdition(loading: true));
     final page = await bookService.findSameEdition(
       editionId: state.book.edition.id,

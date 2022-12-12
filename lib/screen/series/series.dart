@@ -5,48 +5,47 @@ import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/theme/theme.dart';
 
-import 'book_app_bar.dart';
-import 'book_cubit.dart';
-import 'book_details.dart';
-import 'book_header.dart';
-import 'book_links.dart';
-import 'book_same_edition.dart';
-import 'book_summary.dart';
-import 'book_title.dart';
+import 'series_app_bar.dart';
+import 'series_authors.dart';
+import 'series_cubit.dart';
+import 'series_editions.dart';
+import 'series_header.dart';
+import 'series_summary.dart';
+import 'series_title.dart';
 
-class BookScreen extends StatelessWidget {
-  final Book book;
+class SeriesScreen extends StatelessWidget {
+  final Series series;
 
-  const BookScreen({
-    required this.book,
+  const SeriesScreen({
+    required this.series,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BookScreenCubit(
-        bookService: getIt(),
-        book: book,
+      create: (context) => SeriesScreenCubit(
+        editionService: getIt(),
+        series: series,
       )..init(),
-      child: const _BookScreenWrapper(),
+      child: const _SeriesScreenWrapper(),
     );
   }
 }
 
-class _BookScreenWrapper extends StatefulWidget {
-  const _BookScreenWrapper({Key? key}) : super(key: key);
+class _SeriesScreenWrapper extends StatefulWidget {
+  const _SeriesScreenWrapper({Key? key}) : super(key: key);
 
   @override
-  State createState() => _BookScreenWrapperState();
+  State createState() => _SeriesScreenWrapperState();
 }
 
-class _BookScreenWrapperState extends State<_BookScreenWrapper> {
+class _SeriesScreenWrapperState extends State<_SeriesScreenWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const BookScreenAppBar(),
+      appBar: const SeriesScreenAppBar(),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         padding: EdgeInsets.only(
@@ -55,17 +54,15 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            BookScreenHeader(),
+            SeriesScreenHeader(),
             Gap(kSpacer),
-            BookScreenTitle(),
+            SeriesScreenTitle(),
             Gap(kSpacer),
-            BookScreenSummary(),
+            SeriesScreenSummary(),
             Gap(kSpacer),
-            BookScreenLinks(),
+            SeriesScreenAuthors(),
             Gap(kSpacer),
-            BookScreenDetails(),
-            Gap(kSpacer),
-            BookScreenSameEdition(),
+            SeriesScreenEditions(),
           ],
         ),
       ),
