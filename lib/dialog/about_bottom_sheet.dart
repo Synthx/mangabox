@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
+import 'package:mangabox/store/store.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -65,6 +67,15 @@ class AboutBottomSheet extends StatelessWidget {
           Text(
             'Fait avec ❤️ avec Flutter',
             style: Theme.of(context).textTheme.bodySmall,
+          ),
+          BlocSelector<DeviceCubit, DeviceState, String?>(
+            selector: (state) => state.package?.version,
+            builder: (context, version) {
+              return Text(
+                'Version $version',
+                style: Theme.of(context).textTheme.bodySmall,
+              );
+            },
           ),
         ],
       ),
