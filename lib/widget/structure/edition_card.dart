@@ -2,42 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
+import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/widget/widget.dart';
 
-class BookCard extends StatelessWidget {
-  final Book book;
-  final VoidCallback? onTap;
-  final String? title;
+class EditionCard extends StatelessWidget {
+  final Edition edition;
 
-  const BookCard({
-    required this.book,
-    this.onTap,
-    this.title,
+  const EditionCard({
+    required this.edition,
     Key? key,
   }) : super(key: key);
+
+  void _openEditionScreen({
+    required BuildContext context,
+  }) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => EditionScreen(edition: edition),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => _openEditionScreen(
+        context: context,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Picture(
-              picture: book.picture,
+              picture: edition.picture,
             ),
           ),
           const Gap(10),
           Text(
-            title ?? book.name,
+            edition.name,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: context.primaryTextColor,
                 ),
           ),
           Text(
-            book.localePublicationDate(),
+            edition.status.locale(),
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodySmall,
           ),

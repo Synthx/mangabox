@@ -22,6 +22,15 @@ class EditionScreenTitle extends StatelessWidget {
     ));
   }
 
+  void _openPublisherScreen({
+    required BuildContext context,
+    required Publisher publisher,
+  }) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => PublisherScreen(publisher: publisher),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocSelector<EditionScreenCubit, EditionScreenState, Edition>(
@@ -48,6 +57,15 @@ class EditionScreenTitle extends StatelessWidget {
                   onTap: () => _openSeriesScreen(
                     context: context,
                     series: edition.series,
+                  ),
+                ),
+                MbxIconListTile(
+                  title: edition.publisher.name,
+                  subtitle: 'Editeur',
+                  icon: Icons.edit_outlined,
+                  onTap: () => _openPublisherScreen(
+                    context: context,
+                    publisher: edition.publisher,
                   ),
                 ),
                 const Gap(kSpacer),
