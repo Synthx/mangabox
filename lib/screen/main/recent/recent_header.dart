@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
+import 'package:mangabox/theme/theme.dart';
 
 class RecentBookScreenHeader extends StatelessWidget {
   const RecentBookScreenHeader({Key? key}) : super(key: key);
@@ -11,12 +12,12 @@ class RecentBookScreenHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gap(80 + context.safePaddingTop + kToolbarHeight),
+          Gap(kTitleSpacer + context.safePaddingTop + kToolbarHeight),
           Text(
-            'Récent',
+            'Nouveautés',
             style: Theme.of(context).textTheme.displayLarge,
           ),
-          const Gap(50),
+          const Gap(kTitleSpacer),
         ],
       ),
     );
