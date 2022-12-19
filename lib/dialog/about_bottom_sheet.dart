@@ -56,7 +56,7 @@ class AboutBottomSheet extends StatelessWidget {
           const Gap(kSpacer),
           SizedBox(
             width: double.infinity,
-            child: MbxButton(
+            child: MbxButton.text(
               'Buy me a coffee',
               onTap: () => _openBuyMeACoffee(
                 context: context,

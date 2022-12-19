@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/theme/theme.dart';
 
-import 'book.state.dart';
+import 'book_state.dart';
 import 'book_cubit.dart';
 
 class BookScreenTitle extends StatelessWidget {
@@ -12,7 +12,7 @@ class BookScreenTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<BookScreenCubit, BookScreenState, Book>(
-      selector: (state) => state.book,
+      selector: (state) => state.book.content,
       builder: (context, book) {
         return Padding(
           padding: const EdgeInsets.symmetric(

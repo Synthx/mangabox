@@ -26,7 +26,9 @@ class BookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BookScreenCubit(
+        collectionService: getIt(),
         bookService: getIt(),
+        authCubit: context.read(),
         book: book,
       )..init(),
       child: const _BookScreenWrapper(),

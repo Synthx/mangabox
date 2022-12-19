@@ -6,7 +6,7 @@ import 'package:mangabox/data/data.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
-import 'book.state.dart';
+import 'book_state.dart';
 import 'book_cubit.dart';
 
 class _Detail {
@@ -41,7 +41,7 @@ class BookScreenDetails extends StatelessWidget {
           ),
           const Gap(10),
           BlocSelector<BookScreenCubit, BookScreenState, Book>(
-            selector: (state) => state.book,
+            selector: (state) => state.book.content,
             builder: (context, book) {
               final List<_Detail> details = [
                 _Detail(
