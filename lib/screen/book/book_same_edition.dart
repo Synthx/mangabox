@@ -7,7 +7,7 @@ import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
-import 'book.state.dart';
+import 'book_state.dart';
 import 'book_cubit.dart';
 
 class BookScreenSameEdition extends StatelessWidget {

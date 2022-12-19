@@ -8,5 +8,6 @@ void setupInjector() {
   getIt.registerLazySingleton(() => BookService());
   getIt.registerLazySingleton(() => EditionService());
   getIt.registerLazySingleton(() => SeriesService());
+  getIt.registerLazySingleton(() => CollectionService());
   getIt.registerLazySingleton(() => AuthService());
 }

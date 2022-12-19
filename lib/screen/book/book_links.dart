@@ -5,7 +5,7 @@ import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
-import 'book.state.dart';
+import 'book_state.dart';
 import 'book_cubit.dart';
 
 class BookScreenLinks extends StatelessWidget {
@@ -25,7 +25,7 @@ class BookScreenLinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<BookScreenCubit, BookScreenState, Edition>(
-      selector: (state) => state.book.edition,
+      selector: (state) => state.book.content.edition,
       builder: (context, edition) {
         return Padding(
           padding: const EdgeInsets.symmetric(
