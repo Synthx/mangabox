@@ -20,9 +20,8 @@ class PublisherEditions extends StatelessWidget {
           gridDelegate: kDefaultGridDelegate,
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              final edition = editions[index];
               return EditionCard(
-                edition: edition,
+                edition: editions[index],
               );
             },
             childCount: editions.length,

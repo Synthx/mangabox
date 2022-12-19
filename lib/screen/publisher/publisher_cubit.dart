@@ -34,7 +34,7 @@ class PublisherScreenCubit extends Cubit<PublisherScreenState> {
     final page = await editionService.findByPublisher(
       publisher: state.publisher.id,
       pageable: Pageable(
-        lastId: state.editions.content.last.id,
+        startAfter: state.editions.content.last.id,
       ),
     );
     emit(state.copyWith.editions(

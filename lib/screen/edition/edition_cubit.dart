@@ -16,11 +16,9 @@ class EditionScreenCubit extends Cubit<EditionScreenState> {
 
   Future<void> load() async {
     emit(state.copyWith.books(loading: true));
-    final page = await bookService.findSameEdition(
-      editionId: state.edition.id,
-      pageable: const Pageable(
-        sort: Sort(column: 'publicationDate', descending: true),
-      ),
+    final page = await bookService.findByEdition(
+      edition: state.edition.id,
+      pageable: const Pageable(),
     );
     emit(state.copyWith.books(
       loading: false,
@@ -35,11 +33,10 @@ class EditionScreenCubit extends Cubit<EditionScreenState> {
     }
 
     emit(state.copyWith.books(loading: true));
-    final page = await bookService.findSameEdition(
-      editionId: state.edition.id,
+    final page = await bookService.findByEdition(
+      edition: state.edition.id,
       pageable: Pageable(
-        lastId: state.books.content.last.id,
-        sort: const Sort(column: 'publicationDate', descending: true),
+        startAfter: state.books.content.last.id,
       ),
     );
     emit(state.copyWith.books(

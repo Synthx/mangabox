@@ -15,9 +15,7 @@ class RecentBookScreenCubit extends Cubit<RecentBookScreenState> {
   Future<void> load() async {
     emit(state.copyWith.books(loading: true, content: [], total: 0));
     final page = await bookService.findRecent(
-      pageable: const Pageable(
-        sort: Sort(column: 'publicationDate', descending: true),
-      ),
+      pageable: const Pageable(),
     );
     emit(state.copyWith.books(
       loading: false,
@@ -34,8 +32,7 @@ class RecentBookScreenCubit extends Cubit<RecentBookScreenState> {
     emit(state.copyWith.books(loading: true));
     final page = await bookService.findRecent(
       pageable: Pageable(
-        lastId: state.books.content.last.id,
-        sort: const Sort(column: 'publicationDate', descending: true),
+        startAfter: state.books.content.last.id,
       ),
     );
     emit(state.copyWith.books(

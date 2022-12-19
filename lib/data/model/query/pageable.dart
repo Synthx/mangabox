@@ -7,7 +7,6 @@ part 'pageable.freezed.dart';
 class Pageable with _$Pageable {
   const factory Pageable({
     @Default(20) int size,
-    @Default(Sort()) Sort sort,
-    String? lastId,
+    String? startAfter,
   }) = _Pageable;
 }
