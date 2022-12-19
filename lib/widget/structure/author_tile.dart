@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mangabox/data/data.dart';
+import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
@@ -22,11 +23,9 @@ class AuthorTile extends StatelessWidget {
   void _openAuthorScreen({
     required BuildContext context,
   }) {
-    /**
-        Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) = null,
-        ));
-     **/
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => AuthorScreen(author: author),
+    ));
   }
 
   @override
