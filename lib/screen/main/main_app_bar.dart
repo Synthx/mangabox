@@ -20,7 +20,6 @@ class MainScreenAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      titleSpacing: 10,
       title: Align(
         alignment: Alignment.centerRight,
         child: MbxIconButton(
