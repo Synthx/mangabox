@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mangabox/data/data.dart';
 
 part 'pageable.freezed.dart';
 

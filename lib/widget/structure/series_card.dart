@@ -40,8 +40,8 @@ class SeriesCard extends StatelessWidget {
             series.name,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: context.primaryTextColor,
-            ),
+                  color: context.primaryTextColor,
+                ),
           ),
           Text(
             series.year,
