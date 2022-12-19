@@ -10,10 +10,10 @@ class BookService {
     var query = firestore
         .collection('books')
         .where('publicationDate', isLessThanOrEqualTo: Timestamp.now())
-        .orderBy(pageable.sort.column, descending: pageable.sort.descending);
-    if (pageable.lastId != null) {
+        .orderBy('publicationDate', descending: true);
+    if (pageable.startAfter != null) {
       final lastDoc =
-          await firestore.collection('books').doc(pageable.lastId!).get();
+          await firestore.collection('books').doc(pageable.startAfter!).get();
       query = query.startAfterDocument(lastDoc);
     }
 
@@ -33,10 +33,10 @@ class BookService {
     var query = firestore
         .collection('books')
         .where('publicationDate', isGreaterThan: Timestamp.now())
-        .orderBy(pageable.sort.column);
-    if (pageable.lastId != null) {
+        .orderBy('publicationDate');
+    if (pageable.startAfter != null) {
       final lastDoc =
-          await firestore.collection('books').doc(pageable.lastId!).get();
+          await firestore.collection('books').doc(pageable.startAfter!).get();
       query = query.startAfterDocument(lastDoc);
     }
 
@@ -50,17 +50,17 @@ class BookService {
     );
   }
 
-  Future<Page<Book>> findSameEdition({
-    required String editionId,
+  Future<Page<Book>> findByEdition({
+    required String edition,
     required Pageable pageable,
   }) async {
     var query = firestore
         .collection('books')
-        .where('edition.id', isEqualTo: editionId)
-        .orderBy(pageable.sort.column, descending: pageable.sort.descending);
-    if (pageable.lastId != null) {
+        .where('edition.id', isEqualTo: edition)
+        .orderBy('volume', descending: true);
+    if (pageable.startAfter != null) {
       final lastDoc =
-          await firestore.collection('books').doc(pageable.lastId!).get();
+          await firestore.collection('books').doc(pageable.startAfter!).get();
       query = query.startAfterDocument(lastDoc);
     }
 
