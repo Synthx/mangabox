@@ -3,6 +3,7 @@ import 'dart:ui' hide Picture;
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
+import 'package:mangabox/dialog/dialog.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
@@ -16,6 +17,21 @@ class PictureHeader extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _openFullscreenPicture({
+    required BuildContext context,
+  }) {
+    if (picture == null) return;
+
+    showDialog(
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      context: context,
+      builder: (context) => FullscreenPictureDialog(
+        picture: picture!,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     const double blur = 5;
@@ -25,7 +41,7 @@ class PictureHeader extends StatelessWidget {
       height: 400 + context.safePaddingTop,
       child: Stack(
         children: [
-          SizedBox(
+          SizedBox.expand(
             child: ImageFiltered(
               imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
               child: ShaderMask(
@@ -60,8 +76,13 @@ class PictureHeader extends StatelessWidget {
                 SizedBox(
                   height: pictureWidth / kPictureRatio,
                   width: pictureWidth,
-                  child: Picture(
-                    picture: picture,
+                  child: GestureDetector(
+                    onTap: () => _openFullscreenPicture(
+                      context: context,
+                    ),
+                    child: Picture(
+                      picture: picture,
+                    ),
                   ),
                 ),
               ],
