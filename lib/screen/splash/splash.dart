@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.wait([
+      context.read<AuthCubit>().init(),
       context.read<DeviceCubit>().init(),
       Future.delayed(const Duration(seconds: 1)),
     ]).then((_) {
