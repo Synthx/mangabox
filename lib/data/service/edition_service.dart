@@ -28,8 +28,10 @@ class EditionService {
         .collection(_collection)
         .where('publisher.id', isEqualTo: publisher);
     if (pageable.startAfter != null) {
-      final lastDoc =
-          await firestore.collection(_collection).doc(pageable.startAfter!).get();
+      final lastDoc = await firestore
+          .collection(_collection)
+          .doc(pageable.startAfter!)
+          .get();
       query = query.startAfterDocument(lastDoc);
     }
 
