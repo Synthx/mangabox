@@ -6,4 +6,5 @@ final getIt = GetIt.instance;
 void setupInjector() {
   getIt.registerLazySingleton(() => BookService());
   getIt.registerLazySingleton(() => EditionService());
+  getIt.registerLazySingleton(() => SeriesService());
 }
