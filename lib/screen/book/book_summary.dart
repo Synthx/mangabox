@@ -28,7 +28,7 @@ class BookScreenSummary extends StatelessWidget {
           ),
           const Gap(kSpacer),
           BlocSelector<BookScreenCubit, BookScreenState, String?>(
-            selector: (state) => state.book.content.summary,
+            selector: (state) => state.book.summary,
             builder: (context, summary) {
               return ExpandableText(
                 summary ?? 'Aucun résumé disponible',

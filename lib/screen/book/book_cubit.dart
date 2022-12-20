@@ -5,24 +5,23 @@ import 'package:mangabox/store/store.dart';
 import 'book_state.dart';
 
 class BookScreenCubit extends Cubit<BookScreenState> {
-  final CollectionService collectionService;
+  final CollectionStore collectionStore;
   final BookService bookService;
-  final AuthCubit authCubit;
 
   BookScreenCubit({
-    required this.collectionService,
+    required this.collectionStore,
     required this.bookService,
-    required this.authCubit,
     required Book book,
   }) : super(BookScreenState(
-          book: AddableState(content: book),
+          book: book,
           sameEdition: const LazyState(),
+          loading: false,
         ));
 
   Future<void> init() async {
     emit(state.copyWith.sameEdition(loading: true));
     final page = await bookService.findByEdition(
-      edition: state.book.content.edition.id,
+      edition: state.book.edition.id,
       pageable: const Pageable(size: 6),
     );
     emit(state.copyWith.sameEdition(
@@ -33,26 +32,28 @@ class BookScreenCubit extends Cubit<BookScreenState> {
   }
 
   Future<void> addToCollection() async {
-    emit(state.copyWith.book(loading: true));
-    await collectionService.add(
-      book: state.book.content,
-      user: authCubit.state.user!.uid,
+    emit(state.copyWith(loading: true));
+    await collectionStore.add(
+      book: state.book,
     );
-    emit(state.copyWith.book(
+    emit(state.copyWith(
       loading: false,
-      owned: true,
+      book: state.book.copyWith(
+        addedAt: DateTime.now(),
+      ),
     ));
   }
 
   Future<void> removeFromCollection() async {
-    emit(state.copyWith.book(loading: true));
-    await collectionService.remove(
-      book: state.book.content,
-      user: authCubit.state.user!.uid,
+    emit(state.copyWith(loading: true));
+    await collectionStore.remove(
+      book: state.book,
     );
-    emit(state.copyWith.book(
+    emit(state.copyWith(
       loading: false,
-      owned: false,
+      book: state.book.copyWith(
+        addedAt: null,
+      ),
     ));
   }
 }

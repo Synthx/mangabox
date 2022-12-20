@@ -25,7 +25,7 @@ class BookScreenLinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<BookScreenCubit, BookScreenState, Edition>(
-      selector: (state) => state.book.content.edition,
+      selector: (state) => state.book.edition,
       builder: (context, edition) {
         return Padding(
           padding: const EdgeInsets.symmetric(

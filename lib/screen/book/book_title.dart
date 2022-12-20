@@ -12,7 +12,7 @@ class BookScreenTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<BookScreenCubit, BookScreenState, Book>(
-      selector: (state) => state.book.content,
+      selector: (state) => state.book,
       builder: (context, book) {
         return Padding(
           padding: const EdgeInsets.symmetric(

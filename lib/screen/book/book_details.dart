@@ -41,7 +41,7 @@ class BookScreenDetails extends StatelessWidget {
           ),
           const Gap(10),
           BlocSelector<BookScreenCubit, BookScreenState, Book>(
-            selector: (state) => state.book.content,
+            selector: (state) => state.book,
             builder: (context, book) {
               final List<_Detail> details = [
                 _Detail(

@@ -24,9 +24,9 @@ class BookScreenHeaderButton extends StatelessWidget {
       barrierDismissible: false,
       context: context,
       builder: (context) => const ConfirmationDialog(
-        title: 'Retirer?',
+        title: 'Confirmer',
         content:
-            'Êtes-vous sûr de vouloir retirer ce livre de votre collection',
+            'Êtes-vous sûr de vouloir retirer ce livre de votre collection?',
       ),
     );
 
@@ -39,14 +39,14 @@ class BookScreenHeaderButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookScreenCubit, BookScreenState>(
       buildWhen: (prev, curr) =>
-          prev.book.owned != curr.book.owned ||
-          prev.book.loading != curr.book.loading,
+          prev.book.addedAt != curr.book.addedAt ||
+          prev.loading != curr.loading,
       builder: (context, state) {
-        if (state.book.loading) {
+        if (state.loading) {
           return MbxButton.loading();
         }
 
-        if (state.book.owned) {
+        if (state.book.addedAt != null) {
           return MbxButton.text(
             'Retirer',
             onTap: () => _removeFromCollection(

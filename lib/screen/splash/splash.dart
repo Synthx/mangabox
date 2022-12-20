@@ -18,10 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.wait([
-      context.read<AuthCubit>().init(),
-      context.read<DeviceCubit>().init(),
-      Future.delayed(const Duration(seconds: 1)),
-    ]).then((_) {
+      context.read<AuthStore>().init(),
+      context.read<DeviceStore>().init(),
+    ]).then((value) => context.read<CollectionStore>().init()).then((_) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const MainScreen(),
       ));

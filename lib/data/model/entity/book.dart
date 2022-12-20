@@ -23,6 +23,7 @@ class Book with _$Book {
     int? pagesCount,
     String? picture,
     String? summary,
+    DateTime? addedAt,
   }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);

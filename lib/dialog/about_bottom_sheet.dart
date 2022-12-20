@@ -68,7 +68,7 @@ class AboutBottomSheet extends StatelessWidget {
             'Fait avec ❤️ avec Flutter',
             style: Theme.of(context).textTheme.bodySmall,
           ),
-          BlocSelector<DeviceCubit, DeviceState, String?>(
+          BlocSelector<DeviceStore, DeviceState, String?>(
             selector: (state) => state.package?.version,
             builder: (context, version) {
               return Text(
