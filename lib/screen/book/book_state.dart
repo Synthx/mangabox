@@ -6,7 +6,8 @@ part 'book_state.freezed.dart';
 @freezed
 class BookScreenState with _$BookScreenState {
   const factory BookScreenState({
-    required AddableState<Book> book,
+    required Book book,
     required LazyState<Book> sameEdition,
+    required bool loading,
   }) = _BookScreenState;
 }

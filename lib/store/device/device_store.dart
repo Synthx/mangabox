@@ -4,8 +4,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import 'device_state.dart';
 
-class DeviceCubit extends Cubit<DeviceState> {
-  DeviceCubit()
+class DeviceStore extends Cubit<DeviceState> {
+  DeviceStore()
       : super(const DeviceState(
           package: null,
           device: null,

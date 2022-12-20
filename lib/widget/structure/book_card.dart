@@ -24,8 +24,33 @@ class BookCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Picture(
-              picture: book.picture,
+            child: Stack(
+              children: [
+                Picture(
+                  picture: book.picture,
+                ),
+                if (book.addedAt != null)
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        'Possédé',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                            ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           const Gap(10),

@@ -14,16 +14,26 @@ class MangaBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AuthCubit(authService: getIt())),
-        BlocProvider(create: (context) => DeviceCubit()),
+        BlocProvider(create: (context) => AuthStore(authService: getIt())),
+        BlocProvider(create: (context) => DeviceStore()),
       ],
-      child: MaterialApp(
-        title: 'MangaBox',
-        debugShowCheckedModeBanner: false,
-        debugShowMaterialGrid: false,
-        darkTheme: dartThemeData,
-        themeMode: ThemeMode.dark,
-        home: const SplashScreen(),
+      child: Builder(
+        builder: (context) {
+          return BlocProvider(
+            create: (context) => CollectionStore(
+              authStore: context.read(),
+              collectionService: getIt(),
+            ),
+            child: MaterialApp(
+              title: 'MangaBox',
+              debugShowCheckedModeBanner: false,
+              debugShowMaterialGrid: false,
+              darkTheme: dartThemeData,
+              themeMode: ThemeMode.dark,
+              home: const SplashScreen(),
+            ),
+          );
+        },
       ),
     );
   }

@@ -1,20 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mangabox/core/core.dart';
+import 'package:mangabox/data/data.dart';
 
 import 'auth_state.dart';
 
-class AuthCubit extends Cubit<AuthState> {
+class AuthStore extends Cubit<AuthState> {
   final AuthService authService;
 
-  AuthCubit({
+  AuthStore({
     required this.authService,
-  }) : super(const AuthState(
-          user: null,
+  }) : super(AuthState(
+          user: UserProfile.empty(),
         ));
 
   Future<void> init() async {
     var user = await authService.getCurrentUser();
     user ??= await authService.signIn();
-    emit(state.copyWith(user: user));
+    emit(state.copyWith(
+      user: UserProfile(
+        id: user.uid,
+      ),
+    ));
   }
+
+  String get userId => state.user.id;
 }

@@ -15,7 +15,7 @@ class BookScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<BookScreenCubit, BookScreenState, Book>(
-      selector: (state) => state.book.content,
+      selector: (state) => state.book,
       builder: (context, book) {
         return PictureHeader(
           picture: book.picture,
