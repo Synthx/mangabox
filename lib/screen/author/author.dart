@@ -10,7 +10,7 @@ import 'author_loader.dart';
 import 'author_series.dart';
 import 'author_title.dart';
 
-class AuthorScreen extends StatelessWidget {
+class AuthorScreen<T extends UpdatableStore> extends StatelessWidget {
   final Author author;
 
   const AuthorScreen({
@@ -22,6 +22,7 @@ class AuthorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthorScreenCubit(
+        updatableStore: context.read<T?>(),
         seriesService: getIt(),
         author: author,
       )..init(),

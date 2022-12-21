@@ -4,7 +4,8 @@ const kDefaultGridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
   crossAxisCount: 2,
   mainAxisSpacing: 10,
   crossAxisSpacing: 10,
-  childAspectRatio: 0.55,
+  childAspectRatio: kCardRatio,
 );
 
 const kPictureRatio = 307 / 480;
+const kCardRatio = 0.55;

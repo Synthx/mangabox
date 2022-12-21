@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mangabox/data/data.dart';
-import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
@@ -14,19 +13,13 @@ const _colors = [
 
 class AuthorTile extends StatelessWidget {
   final Author author;
+  final VoidCallback? onTap;
 
   const AuthorTile({
     required this.author,
+    this.onTap,
     Key? key,
   }) : super(key: key);
-
-  void _openAuthorScreen({
-    required BuildContext context,
-  }) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => AuthorScreen(author: author),
-    ));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +46,7 @@ class AuthorTile extends StatelessWidget {
       trailing: const MbxIconButton(
         icon: Icons.chevron_right,
       ),
-      onTap: () => _openAuthorScreen(
-        context: context,
-      ),
+      onTap: onTap,
     );
   }
 }

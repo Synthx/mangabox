@@ -3,12 +3,15 @@ import 'package:mangabox/data/data.dart';
 
 import 'author_state.dart';
 
-class AuthorScreenCubit extends Cubit<AuthorScreenState> {
+class AuthorScreenCubit extends Cubit<AuthorScreenState>
+    implements UpdatableStore {
+  final UpdatableStore? updatableStore;
   final SeriesService seriesService;
 
   AuthorScreenCubit({
     required this.seriesService,
     required Author author,
+    this.updatableStore,
   }) : super(AuthorScreenState(
           author: author,
           series: const LazyState(),
@@ -41,5 +44,10 @@ class AuthorScreenCubit extends Cubit<AuthorScreenState> {
       loading: false,
       content: [...state.series.content, ...page.content],
     ));
+  }
+
+  @override
+  Future<void> update(List<Book> books) async {
+    await updatableStore?.update(books);
   }
 }

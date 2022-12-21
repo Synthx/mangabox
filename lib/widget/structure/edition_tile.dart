@@ -2,32 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
-import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
 class EditionTile extends StatelessWidget {
   final Edition edition;
+  final VoidCallback? onTap;
 
   const EditionTile({
     required this.edition,
+    this.onTap,
     Key? key,
   }) : super(key: key);
-
-  void _openEditionScreen({
-    required BuildContext context,
-  }) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => EditionScreen(edition: edition),
-    ));
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _openEditionScreen(
-        context: context,
-      ),
+      onTap: onTap,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

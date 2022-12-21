@@ -14,6 +14,7 @@ class RecentBookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RecentBookScreenCubit(
+        collectionStore: context.read(),
         bookService: getIt(),
       )..load(),
       child: const _RecentBookScreenWrapper(),

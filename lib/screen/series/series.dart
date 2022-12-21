@@ -13,7 +13,7 @@ import 'series_header.dart';
 import 'series_summary.dart';
 import 'series_title.dart';
 
-class SeriesScreen extends StatelessWidget {
+class SeriesScreen<T extends UpdatableStore> extends StatelessWidget {
   final Series series;
 
   const SeriesScreen({
@@ -25,6 +25,7 @@ class SeriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SeriesScreenCubit(
+        updatableStore: context.read<T?>(),
         editionService: getIt(),
         series: series,
       )..init(),

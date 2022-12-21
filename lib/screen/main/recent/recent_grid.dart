@@ -15,8 +15,12 @@ class RecentBookScreenGrid extends StatelessWidget {
     required BuildContext context,
     required Book book,
   }) {
+    final store = context.read<RecentBookScreenCubit>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => BookScreen(book: book),
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: BookScreen<RecentBookScreenCubit>(book: book),
+      ),
     ));
   }
 

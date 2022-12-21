@@ -17,8 +17,12 @@ class EditionScreenTitle extends StatelessWidget {
     required BuildContext context,
     required Series series,
   }) {
+    final store = context.read<EditionScreenCubit>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => SeriesScreen(series: series),
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: SeriesScreen(series: series),
+      ),
     ));
   }
 
@@ -26,8 +30,12 @@ class EditionScreenTitle extends StatelessWidget {
     required BuildContext context,
     required Publisher publisher,
   }) {
+    final store = context.read<EditionScreenCubit>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => PublisherScreen(publisher: publisher),
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: PublisherScreen(publisher: publisher),
+      ),
     ));
   }
 

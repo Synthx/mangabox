@@ -15,11 +15,13 @@ class BookScreenLinks extends StatelessWidget {
     required BuildContext context,
     required Edition edition,
   }) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => EditionScreen(edition: edition),
+    final store = context.read<BookScreenCubit>();
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: EditionScreen<BookScreenCubit>(edition: edition),
       ),
-    );
+    ));
   }
 
   @override
