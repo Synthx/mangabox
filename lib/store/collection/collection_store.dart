@@ -22,12 +22,15 @@ class CollectionStore extends Cubit<CollectionState> {
     ));
   }
 
-  Future<void> add({
+  Future<Book> add({
     required Book book,
   }) async {
+    final now = DateTime.now();
+    book = book.copyWith(addedAt: now);
+
     final books = {
       ...state.books,
-      book.id: DateTime.now(),
+      book.id: now,
     };
 
     await collectionService.add(
@@ -38,11 +41,14 @@ class CollectionStore extends Cubit<CollectionState> {
     emit(state.copyWith(
       books: books,
     ));
+
+    return book;
   }
 
-  Future<void> remove({
+  Future<Book> remove({
     required Book book,
   }) async {
+    book = book.copyWith(addedAt: null);
     final books = {
       ...state.books,
     };
@@ -56,9 +62,9 @@ class CollectionStore extends Cubit<CollectionState> {
     emit(state.copyWith(
       books: books,
     ));
-  }
 
-  bool has(Book book) => state.books.containsKey(book.id);
+    return book;
+  }
 
   DateTime? get(Book book) => state.books[book.id];
 }

@@ -10,7 +10,7 @@ import 'edition_header.dart';
 import 'edition_loader.dart';
 import 'edition_title.dart';
 
-class EditionScreen extends StatelessWidget {
+class EditionScreen<T extends UpdatableStore> extends StatelessWidget {
   final Edition edition;
 
   const EditionScreen({
@@ -22,9 +22,11 @@ class EditionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => EditionScreenCubit(
+        updatableStore: context.read<T?>(),
+        collectionStore: context.read(),
         bookService: getIt(),
         edition: edition,
-      )..load(),
+      )..init(),
       child: const _EditionScreenWrapper(),
     );
   }
@@ -38,37 +40,14 @@ class _EditionScreenWrapper extends StatefulWidget {
 }
 
 class _EditionScreenWrapperState extends State<_EditionScreenWrapper> {
-  final _scrollController = ScrollController();
-  final _throttle = Throttle(duration: const Duration(milliseconds: 250));
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(() => _throttle.run(_onScroll));
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _throttle.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (_scrollController.hasReachedBottom) {
-      context.read<EditionScreenCubit>().loadMore();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const EditionScreenAppBar(),
+      appBar: EditionScreenAppBar(),
       body: CustomScrollView(
-        controller: _scrollController,
-        physics: const ClampingScrollPhysics(),
-        slivers: const [
+        physics: ClampingScrollPhysics(),
+        slivers: [
           EditionScreenHeader(),
           EditionScreenTitle(),
           EditionScreenBooks(),

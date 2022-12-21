@@ -7,8 +7,8 @@ import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/theme/theme.dart';
 import 'package:mangabox/widget/widget.dart';
 
-import 'book_state.dart';
 import 'book_cubit.dart';
+import 'book_state.dart';
 
 class BookScreenSameEdition extends StatelessWidget {
   const BookScreenSameEdition({Key? key}) : super(key: key);
@@ -17,8 +17,12 @@ class BookScreenSameEdition extends StatelessWidget {
     required BuildContext context,
     required Book book,
   }) {
+    final store = context.read<BookScreenCubit>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => BookScreen(book: book),
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: BookScreen<BookScreenCubit>(book: book),
+      ),
     ));
   }
 
@@ -42,7 +46,7 @@ class BookScreenSameEdition extends StatelessWidget {
         BlocSelector<BookScreenCubit, BookScreenState, List<Book>>(
           selector: (state) => state.sameEdition.content,
           builder: (context, books) {
-            const double height = 210;
+            const double height = 300;
             return SizedBox(
               height: height,
               child: ListView.separated(
@@ -54,17 +58,15 @@ class BookScreenSameEdition extends StatelessWidget {
                 separatorBuilder: (context, index) => const Gap(10),
                 itemBuilder: (context, index) {
                   final book = books[index];
-                  return GestureDetector(
-                    onTap: () => _openBookScreen(
-                      context: context,
-                      book: book,
-                    ),
-                    child: SizedBox(
-                      height: height,
-                      width: height * kPictureRatio,
-                      child: Picture(
-                        picture: book.picture,
+                  return SizedBox(
+                    width: height * kCardRatio,
+                    child: BookCard(
+                      onTap: () => _openBookScreen(
+                        context: context,
+                        book: book,
                       ),
+                      book: book,
+                      title: 'Volume ${book.volume}',
                     ),
                   );
                 },

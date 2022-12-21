@@ -14,7 +14,7 @@ import 'book_same_edition.dart';
 import 'book_summary.dart';
 import 'book_title.dart';
 
-class BookScreen extends StatelessWidget {
+class BookScreen<T extends UpdatableStore> extends StatelessWidget {
   final Book book;
 
   const BookScreen({
@@ -26,8 +26,9 @@ class BookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BookScreenCubit(
-        bookService: getIt(),
+        updatableStore: context.read<T?>(),
         collectionStore: context.read(),
+        bookService: getIt(),
         book: book,
       )..init(),
       child: const _BookScreenWrapper(),

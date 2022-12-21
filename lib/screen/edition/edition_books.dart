@@ -15,8 +15,12 @@ class EditionScreenBooks extends StatelessWidget {
     required BuildContext context,
     required Book book,
   }) {
+    final store = context.read<EditionScreenCubit>();
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => BookScreen(book: book),
+      builder: (context) => BlocProvider.value(
+        value: store,
+        child: BookScreen<EditionScreenCubit>(book: book),
+      ),
     ));
   }
 

@@ -9,14 +9,10 @@ class CollectionService {
     required Book book,
     required String user,
   }) async {
-    final data = {
-      ...book.toJson(),
-      'addedAt': DateTime.now(),
-    };
     final reference = _firestore.collection('users').doc(user);
     await Future.wait([
       reference.update({'books': books}),
-      reference.collection('books').doc(book.id).set(data)
+      reference.collection('books').doc(book.id).set(book.toJson()),
     ]);
   }
 
@@ -43,7 +39,9 @@ class CollectionService {
     }
 
     final books = snapshot.data()!['books'] as Map<String, dynamic>;
-    return books
-        .map((key, value) => MapEntry(key, (value as Timestamp).toDate()));
+    return books.map((key, value) => MapEntry(
+          key,
+          (value as Timestamp).toDate(),
+        ));
   }
 }
