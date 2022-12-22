@@ -30,4 +30,30 @@ class SeriesService {
       total: aggSnapshot.count,
     );
   }
+
+  Future<Page<Series>> findByType({
+    required String type,
+    Pageable? pageable,
+  }) async {
+    var query = _firestore
+        .collection(_collection)
+        .where('type.id', isEqualTo: type)
+        .orderBy('year', descending: true);
+    if (pageable?.startAfter != null) {
+      final lastDoc = await _firestore
+          .collection(_collection)
+          .doc(pageable!.startAfter!)
+          .get();
+      query = query.startAfterDocument(lastDoc);
+    }
+
+    final snapshot = await query.limit(pageable?.size ?? 20).get();
+    final aggSnapshot = await query.count().get();
+    return Page(
+      content: snapshot.docs
+          .map((e) => Series.fromJson(e.data()))
+          .toList(growable: false),
+      total: aggSnapshot.count,
+    );
+  }
 }
