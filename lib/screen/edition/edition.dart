@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
+import 'package:mangabox/theme/theme.dart';
 
 import 'edition_app_bar.dart';
 import 'edition_books.dart';
@@ -42,16 +43,20 @@ class _EditionScreenWrapper extends StatefulWidget {
 class _EditionScreenWrapperState extends State<_EditionScreenWrapper> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: EditionScreenAppBar(),
+      appBar: const EditionScreenAppBar(),
       body: CustomScrollView(
-        physics: ClampingScrollPhysics(),
         slivers: [
-          EditionScreenHeader(),
-          EditionScreenTitle(),
-          EditionScreenBooks(),
-          EditionScreenLoader(),
+          const EditionScreenHeader(),
+          const EditionScreenTitle(),
+          const EditionScreenBooks(),
+          SliverPadding(
+            padding: EdgeInsets.only(
+              bottom: kSpacer + context.safePaddingBottom,
+            ),
+            sliver: const EditionScreenLoader(),
+          ),
         ],
       ),
     );

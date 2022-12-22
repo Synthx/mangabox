@@ -52,7 +52,6 @@ class EditionScreenTitle extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Gap(kSpacer),
                 Text(
                   edition.name,
                   style: Theme.of(context).textTheme.displayMedium,
@@ -83,6 +82,7 @@ class EditionScreenTitle extends StatelessWidget {
                         color: context.primaryTextColor,
                       ),
                 ),
+                const Gap(kSpacer),
               ],
             ),
           ),

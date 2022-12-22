@@ -13,7 +13,8 @@ class FullscreenPictureDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.black.withOpacity(0.65),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: MbxIconButton(
@@ -21,13 +22,13 @@ class FullscreenPictureDialog extends StatelessWidget {
           onTap: () => Navigator.of(context).pop(),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(40),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final width = constraints.maxWidth;
-              return SizedBox(
+      body: Padding(
+        padding: const EdgeInsets.all(40),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            return Center(
+              child: SizedBox(
                 height: width / kPictureRatio,
                 width: width,
                 child: InteractiveViewer(
@@ -38,9 +39,9 @@ class FullscreenPictureDialog extends StatelessWidget {
                     picture: picture,
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

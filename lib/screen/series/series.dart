@@ -10,7 +10,6 @@ import 'series_authors.dart';
 import 'series_cubit.dart';
 import 'series_editions.dart';
 import 'series_header.dart';
-import 'series_summary.dart';
 import 'series_title.dart';
 
 class SeriesScreen<T extends UpdatableStore> extends StatelessWidget {
@@ -47,25 +46,27 @@ class _SeriesScreenWrapperState extends State<_SeriesScreenWrapper> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const SeriesScreenAppBar(),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        padding: EdgeInsets.only(
-          bottom: kSpacer + context.safePaddingBottom,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            SeriesScreenHeader(),
-            Gap(kSpacer),
-            SeriesScreenTitle(),
-            Gap(kSpacer),
-            SeriesScreenSummary(),
-            Gap(kSpacer),
-            SeriesScreenAuthors(),
-            Gap(kSpacer),
-            SeriesScreenEditions(),
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SeriesScreenHeader(),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: kSpacer + context.safePaddingBottom,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  SeriesScreenTitle(),
+                  Gap(kSpacer),
+                  SeriesScreenAuthors(),
+                  Gap(kSpacer),
+                  SeriesScreenEditions(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
