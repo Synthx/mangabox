@@ -11,22 +11,20 @@ class EditionScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: BlocSelector<EditionScreenCubit, EditionScreenState, Edition>(
-        selector: (state) => state.edition,
-        builder: (context, edition) {
-          return PictureHeader(
-            picture: edition.picture,
-            child: MbxBadges(
-              badges: [
-                edition.status.locale(),
-                edition.publisher.name,
-                edition.series.type.name,
-              ],
-            ),
-          );
-        },
-      ),
+    return BlocSelector<EditionScreenCubit, EditionScreenState, Edition>(
+      selector: (state) => state.edition,
+      builder: (context, edition) {
+        return SliverPictureHeader(
+          picture: edition.picture,
+          child: MbxBadges(
+            badges: [
+              edition.status.locale(),
+              edition.publisher.name,
+              edition.series.type.name,
+            ],
+          ),
+        );
+      },
     );
   }
 }

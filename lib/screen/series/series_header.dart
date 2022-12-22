@@ -14,7 +14,7 @@ class SeriesScreenHeader extends StatelessWidget {
     return BlocSelector<SeriesScreenCubit, SeriesScreenState, Series>(
       selector: (state) => state.series,
       builder: (context, series) {
-        return PictureHeader(
+        return SliverPictureHeader(
           picture: series.picture,
           child: MbxBadges(
             badges: [

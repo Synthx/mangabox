@@ -49,27 +49,31 @@ class _BookScreenWrapperState extends State<_BookScreenWrapper> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const BookScreenAppBar(),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        padding: EdgeInsets.only(
-          bottom: kSpacer + context.safePaddingBottom,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            BookScreenHeader(),
-            Gap(kSpacer),
-            BookScreenTitle(),
-            Gap(kSpacer),
-            BookScreenSummary(),
-            Gap(kSpacer),
-            BookScreenLinks(),
-            Gap(kSpacer),
-            BookScreenDetails(),
-            Gap(kSpacer),
-            BookScreenSameEdition(),
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const BookScreenHeader(),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: kSpacer + context.safePaddingBottom,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  BookScreenTitle(),
+                  Gap(kSpacer),
+                  BookScreenSummary(),
+                  Gap(kSpacer),
+                  BookScreenLinks(),
+                  Gap(kSpacer),
+                  BookScreenDetails(),
+                  Gap(kSpacer),
+                  BookScreenSameEdition(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
