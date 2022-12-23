@@ -39,7 +39,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
-ios/Runner/GoogleService-Info.plist
 
 # Android Studio will place build artifacts here
 /android/app/debug
