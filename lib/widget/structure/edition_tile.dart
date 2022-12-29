@@ -20,11 +20,10 @@ class EditionTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 90 / kPictureRatio,
-            width: 90,
+            height: 100 / kPictureRatio,
+            width: 100,
             child: Picture(
               picture: edition.picture,
             ),
@@ -40,6 +39,13 @@ class EditionTile extends StatelessWidget {
                         color: context.primaryTextColor,
                       ),
                 ),
+                if (edition.ownedBooks != null)
+                  Text(
+                    edition.ownedBooks! > 1
+                        ? '${edition.ownedBooks} Volumes'
+                        : '${edition.ownedBooks} Volume',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 const Gap(10),
                 Text(
                   '${edition.status.locale()}\n${edition.publisher.name}',
@@ -49,8 +55,9 @@ class EditionTile extends StatelessWidget {
             ),
           ),
           const Gap(kSpacer),
-          const MbxIconButton(
-            icon: Icons.chevron_right,
+          const Icon(
+            Icons.chevron_right,
+            size: 32,
           ),
         ],
       ),

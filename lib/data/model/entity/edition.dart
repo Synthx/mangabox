@@ -14,6 +14,7 @@ class Edition with _$Edition {
     required Series series,
     required Publisher publisher,
     String? picture,
+    int? ownedBooks,
   }) = _Edition;
 
   factory Edition.fromJson(Map<String, dynamic> json) =>

@@ -29,6 +29,7 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
     emit(state.copyWith.sameEdition(
       loading: false,
       content: page.content
+          .where((e) => e.id != state.book.id)
           .map((e) => e.copyWith(addedAt: collectionStore.get(e)))
           .toList(growable: false),
       total: page.total,
