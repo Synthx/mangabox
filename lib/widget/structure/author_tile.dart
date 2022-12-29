@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/theme/theme.dart';
-import 'package:mangabox/widget/widget.dart';
 
 const _colors = [
   Colors.brown,
@@ -43,8 +42,9 @@ class AuthorTile extends StatelessWidget {
         ),
       ),
       title: Text(name),
-      trailing: const MbxIconButton(
-        icon: Icons.chevron_right,
+      trailing: const Icon(
+        Icons.chevron_right,
+        size: 32,
       ),
       onTap: onTap,
     );

@@ -7,8 +7,8 @@ import 'package:mangabox/theme/theme.dart';
 import '../main_store.dart';
 import '../navigation_menu/navigation_menu.dart';
 
-class RecentBookScreenHeader extends StatelessWidget {
-  const RecentBookScreenHeader({Key? key}) : super(key: key);
+class CollectionScreenTitle extends StatelessWidget {
+  const CollectionScreenTitle({Key? key}) : super(key: key);
 
   void _openNavigationMenu({
     required BuildContext context,
@@ -20,7 +20,7 @@ class RecentBookScreenHeader extends StatelessWidget {
       barrierColor: Colors.transparent,
       context: context,
       builder: (context) => const NavigationMenu(
-        selectedIndex: 0,
+        selectedIndex: 1,
       ),
     );
 
@@ -46,7 +46,7 @@ class RecentBookScreenHeader extends StatelessWidget {
               size: Theme.of(context).textTheme.displayLarge?.fontSize,
             ),
             icon: Text(
-              'Nouveautés',
+              'Collection',
               style: Theme.of(context).textTheme.displayLarge,
             ),
           ),

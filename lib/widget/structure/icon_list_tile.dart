@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mangabox/core/core.dart';
 import 'package:mangabox/theme/theme.dart';
-import 'package:mangabox/widget/widget.dart';
 
 class MbxIconListTile extends StatelessWidget {
   final String title;
@@ -37,8 +36,9 @@ class MbxIconListTile extends StatelessWidget {
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle!) : null,
       trailing: onTap != null
-          ? const MbxIconButton(
-              icon: Icons.chevron_right,
+          ? const Icon(
+              Icons.chevron_right,
+              size: 32,
             )
           : null,
       onTap: () => onTap?.call(),

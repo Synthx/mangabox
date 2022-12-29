@@ -11,14 +11,23 @@ class CollectionStore extends Cubit<CollectionState> {
     required this.authStore,
   }) : super(const CollectionState(
           books: {},
+          editions: LazyState(),
         ));
 
   Future<void> init() async {
+    // todo: parallelize /w destructuring and await Future.wait
     final books = await collectionService.get(
+      user: authStore.userId,
+    );
+    final page = await collectionService.getEditions(
       user: authStore.userId,
     );
     emit(state.copyWith(
       books: books,
+      editions: state.editions.copyWith(
+        content: page.content,
+        total: page.total,
+      ),
     ));
   }
 
@@ -40,6 +49,16 @@ class CollectionStore extends Cubit<CollectionState> {
     );
     emit(state.copyWith(
       books: books,
+      editions: state.editions.copyWith(
+        content: state.editions.content
+            .map((e) => e.id == book.edition.id
+                ? e.copyWith(
+                    picture: book.picture,
+                    ownedBooks: e.ownedBooks! + 1,
+                  )
+                : e)
+            .toList(growable: false),
+      ),
     ));
 
     return book;
@@ -64,6 +83,17 @@ class CollectionStore extends Cubit<CollectionState> {
     ));
 
     return book;
+  }
+
+  Future<void> loadMore() async {
+    emit(state.copyWith.editions(loading: true));
+    final page = await collectionService.getEditions(
+      user: authStore.userId,
+    );
+    emit(state.copyWith.editions(
+      content: [...state.editions.content, ...page.content],
+      loading: false,
+    ));
   }
 
   DateTime? get(Book book) => state.books[book.id];
