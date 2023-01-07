@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       context.read<AuthStore>().init(),
       context.read<DeviceStore>().init(),
     ]).then((value) => context.read<CollectionStore>().init()).then((_) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
+      Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => const MainScreen(),
       ));
     });
