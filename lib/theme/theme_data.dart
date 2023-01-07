@@ -22,8 +22,23 @@ ThemeData themeData({
       titleSpacing: kSpacer,
       elevation: 0,
     ),
+    bottomAppBarTheme: const BottomAppBarTheme(
+      color: Color(0xFF000000),
+      elevation: 0,
+    ),
     listTileTheme: const ListTileThemeData(
       contentPadding: EdgeInsets.zero,
+    ),
+    checkboxTheme: CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(Colors.white),
+      fillColor: MaterialStateProperty.all(const Color(0xFFBF5AF2)),
+      side: const BorderSide(
+        width: 0.65,
+        color: Color(0xFF27272A),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(

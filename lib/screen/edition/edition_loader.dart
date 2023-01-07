@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mangabox/screen/edition/edition_cubit.dart';
-import 'package:mangabox/screen/edition/edition_state.dart';
 import 'package:mangabox/widget/widget.dart';
+
+import 'edition_cubit.dart';
+import 'edition_state.dart';
 
 class EditionScreenLoader extends StatelessWidget {
   const EditionScreenLoader({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class EditionScreenLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<EditionScreenCubit, EditionScreenState, bool>(
-      selector: (state) => state.books.loading,
+      selector: (state) => state.loading,
       builder: (context, loading) {
         if (loading) {
           return const SliverMbxLoader();

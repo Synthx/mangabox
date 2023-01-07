@@ -85,6 +85,33 @@ class CollectionStore extends Cubit<CollectionState> {
     return book;
   }
 
+  Future<void> saveMany({
+    required List<Book> books,
+    required String edition,
+  }) async {
+    final booksMap = {
+      ...state.books,
+    };
+    for (final book in books) {
+      if (book.addedAt != null) {
+        booksMap[book.id] = book.addedAt!;
+      } else {
+        booksMap.remove(book.id);
+      }
+    }
+
+    await collectionService.saveMany(
+      booksMap: booksMap,
+      books: books,
+      edition: edition,
+      user: authStore.userId,
+    );
+
+    emit(state.copyWith(
+      books: booksMap,
+    ));
+  }
+
   Future<void> loadMore() async {
     emit(state.copyWith.editions(loading: true));
     final page = await collectionService.getEditions(
