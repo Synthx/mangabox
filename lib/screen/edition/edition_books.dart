@@ -27,7 +27,7 @@ class EditionScreenBooks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<EditionScreenCubit, EditionScreenState, List<Book>>(
-      selector: (state) => state.books.content,
+      selector: (state) => state.books,
       builder: (context, books) {
         return SliverPadding(
           padding: const EdgeInsets.symmetric(

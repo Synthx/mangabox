@@ -81,6 +81,54 @@ class CollectionService {
     });
   }
 
+  Future<void> saveMany({
+    required Map<String, DateTime> booksMap,
+    required List<Book> books,
+    required String edition,
+    required String user,
+  }) async {
+    final now = DateTime.now();
+    final ref = _firestore.collection('users').doc(user);
+    final editionRef = ref.collection('editions').doc(edition);
+    final ownedBooks =
+        books.where((e) => e.addedAt != null).toList(growable: false);
+    ownedBooks.sort((a, b) => b.publicationDate.compareTo(a.publicationDate));
+    final editionSnapshot = await editionRef.get();
+    final lastPublishedBook = ownedBooks.first;
+
+    await _firestore.runTransaction((transaction) async {
+      // update book collection
+      for (final book in books) {
+        if (book.addedAt != null) {
+          transaction.set(ref.collection('books').doc(book.id), book.toJson());
+        } else {
+          transaction.delete(ref.collection('books').doc(book.id));
+        }
+      }
+
+      // update user
+      transaction.update(ref, {'books': booksMap, 'lastModifiedAt': now});
+
+      // update edition
+      if (ownedBooks.isEmpty) {
+        transaction.delete(editionRef);
+      } else if (editionSnapshot.exists) {
+        transaction.update(editionRef, {
+          'picture': lastPublishedBook.picture,
+          'lastAddedAt': now,
+          'ownedBooks': ownedBooks.length,
+        });
+      } else {
+        transaction.set(editionRef, {
+          ...lastPublishedBook.edition.toJson(),
+          'picture': lastPublishedBook.picture,
+          'lastAddedAt': now,
+          'ownedBooks': ownedBooks.length,
+        });
+      }
+    });
+  }
+
   Future<Map<String, DateTime>> get({
     required String user,
   }) async {
