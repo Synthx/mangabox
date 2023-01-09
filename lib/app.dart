@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mangabox/core/core.dart';
+import 'package:mangabox/screen/screen.dart';
 import 'package:mangabox/store/store.dart';
 import 'package:mangabox/theme/theme.dart';
 
@@ -23,13 +24,14 @@ class MangaBox extends StatelessWidget {
               authStore: context.read(),
               collectionService: getIt(),
             ),
-            child: MaterialApp.router(
+            child: MaterialApp(
               title: 'MangaBox',
               debugShowCheckedModeBanner: false,
               debugShowMaterialGrid: false,
               darkTheme: dartThemeData,
               themeMode: ThemeMode.dark,
-              routerConfig: router,
+              navigatorKey: navigatorKey,
+              home: const SplashScreen(),
             ),
           );
         },

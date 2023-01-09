@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
 
 import 'add_book_app_bar.dart';
@@ -22,6 +23,7 @@ class EditionAddBookScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => EditionAddBookScreenStore(
         collectionStore: context.read(),
+        dialogService: getIt(),
         edition: edition,
         books: books,
       ),
