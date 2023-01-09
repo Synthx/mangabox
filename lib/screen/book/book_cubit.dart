@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mangabox/core/core.dart';
 import 'package:mangabox/data/data.dart';
 import 'package:mangabox/store/store.dart';
 
@@ -8,10 +9,12 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
   final UpdatableStore? updatableStore;
   final CollectionStore collectionStore;
   final BookService bookService;
+  final DialogService dialogService;
 
   BookScreenCubit({
     required this.collectionStore,
     required this.bookService,
+    required this.dialogService,
     required Book book,
     this.updatableStore,
   }) : super(BookScreenState(
@@ -37,9 +40,19 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
   }
 
   Future<void> addToCollection() async {
+    var book = state.book;
+    if (book.publicationDate.isAfter(DateTime.now())) {
+      final confirmed = await dialogService.askConfirmation(
+        title: 'Ajouter ?',
+        content:
+            'Êtes-vous sûr de vouloir ajouter ce livre à votre collection ? Il n\'est pas encore sorti officiellement.',
+      );
+      if (confirmed != true) return;
+    }
+
     emit(state.copyWith(loading: true));
-    final book = await collectionStore.add(
-      book: state.book,
+    book = await collectionStore.add(
+      book: book,
     );
     await updatableStore?.update([book]);
     emit(state.copyWith(
@@ -49,6 +62,13 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
   }
 
   Future<void> removeFromCollection() async {
+    final confirmed = await dialogService.askConfirmation(
+      title: 'Retirer ?',
+      content:
+          'Êtes-vous sûr de vouloir retirer ce livre de votre collection ?',
+    );
+    if (confirmed != true) return;
+
     emit(state.copyWith(loading: true));
     final book = await collectionStore.remove(
       book: state.book,

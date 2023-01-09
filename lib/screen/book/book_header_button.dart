@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mangabox/dialog/dialog.dart';
 import 'package:mangabox/widget/widget.dart';
 
 import 'book_cubit.dart';
@@ -16,23 +14,10 @@ class BookScreenHeaderButton extends StatelessWidget {
     context.read<BookScreenCubit>().addToCollection();
   }
 
-  Future<void> _removeFromCollection({
+  void _removeFromCollection({
     required BuildContext context,
-  }) async {
-    final cubit = context.read<BookScreenCubit>();
-    final result = await showCupertinoModalPopup<bool>(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) => const ConfirmationDialog(
-        title: 'Confirmer',
-        content:
-            'Êtes-vous sûr de vouloir retirer ce livre de votre collection?',
-      ),
-    );
-
-    if (result == true) {
-      cubit.removeFromCollection();
-    }
+  }) {
+    context.read<BookScreenCubit>().removeFromCollection();
   }
 
   @override
@@ -55,8 +40,11 @@ class BookScreenHeaderButton extends StatelessWidget {
           );
         }
 
+        final book = state.book;
         return MbxButton.icon(
-          'Ajouter',
+          book.publicationDate.isAfter(DateTime.now())
+              ? 'Pré-ajouter'
+              : 'Ajouter',
           icon: Icons.add,
           onTap: () => _addToCollection(
             context: context,
