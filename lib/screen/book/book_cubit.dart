@@ -10,11 +10,13 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
   final CollectionStore collectionStore;
   final BookService bookService;
   final DialogService dialogService;
+  final NotificationService notificationService;
 
   BookScreenCubit({
     required this.collectionStore,
     required this.bookService,
     required this.dialogService,
+    required this.notificationService,
     required Book book,
     this.updatableStore,
   }) : super(BookScreenState(
@@ -59,6 +61,10 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
       loading: false,
       book: book,
     ));
+    notificationService.showSuccess(
+      message: 'Livre ajouté à votre collection',
+      action: 'OK',
+    );
   }
 
   Future<void> removeFromCollection() async {
@@ -78,6 +84,10 @@ class BookScreenCubit extends Cubit<BookScreenState> implements UpdatableStore {
       loading: false,
       book: book,
     ));
+    notificationService.showSuccess(
+      message: 'Livre retiré de votre collection',
+      action: 'OK',
+    );
   }
 
   @override

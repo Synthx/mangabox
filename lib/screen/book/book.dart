@@ -30,6 +30,7 @@ class BookScreen<T extends UpdatableStore> extends StatelessWidget {
         collectionStore: context.read(),
         bookService: getIt(),
         dialogService: getIt(),
+        notificationService: getIt(),
         book: book,
       )..init(),
       child: const _BookScreenWrapper(),

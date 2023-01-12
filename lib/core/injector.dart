@@ -11,4 +11,5 @@ void setupInjector() {
   getIt.registerLazySingleton(() => CollectionService());
   getIt.registerLazySingleton(() => AuthService());
   getIt.registerLazySingleton(() => DialogService());
+  getIt.registerLazySingleton(() => NotificationService());
 }

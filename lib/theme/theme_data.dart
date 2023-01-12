@@ -51,6 +51,15 @@ ThemeData themeData({
         ),
       ),
     ),
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: Color(0xFF27272A),
+      contentTextStyle: TextStyle(
+        color: Color(0xFFFFFFFF),
+        fontSize: 15,
+        fontWeight: FontWeight.normal,
+      ),
+      actionTextColor: Color(0xFFFFFFFF),
+    ),
     textTheme: base.textTheme.copyWith(
       displayLarge: base.textTheme.displayLarge?.copyWith(
         fontSize: 34,
